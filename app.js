@@ -29,10 +29,12 @@ const getNews = (id) =>{
 
 }
 const displayNews = (data) =>{
+    // item length count 
     const postLen = data.data.length;
-    console.log(postLen);
     const item=document.getElementById("on-item");
     item.innerText=`${postLen} items found for category Entertainment`
+
+    // news show section 
     const newsPost = document.getElementById("news-detail");
     newsPost.innerHTML=""
     data.data.forEach((datas) => {
@@ -102,7 +104,6 @@ const newsModal = (data) =>{
 }
 
 
-
 catagoryNews()
 newsData();
-getNews()
+getNews("01")
