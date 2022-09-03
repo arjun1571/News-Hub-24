@@ -48,7 +48,6 @@ const displayNews = (data) =>{
         
         document.getElementById("spiner").style.display="none";
         const {title,details,image_url,author,_id,total_view}=datas;
-        console.log(details);
         const createDiv=document.createElement("div")
         createDiv.innerHTML=`
         <div class="card mb-3" >
@@ -58,12 +57,12 @@ const displayNews = (data) =>{
                     </div>
                     <div class="col-md-8">
                     <div class="card-body">
-                    <h5 class="card-text">${title}</h5>
-                    <p class="text-truncate">${details}</p>
+                    <h5 class="card-text">${title ? title:"N/A"}</h5>
+                    <p class="text-truncate">${details ? details:"N/A"}</p>
                     <div class="d-flex p-2">
                     <div class="d-flex  align-items-center">
-                    <img src="${author.img}" style="height:60px" class="rounded-circle p-2" alt=""  >
-                    <p>${author.name}</p></div>
+                    <img src="${author.img ? author.img:'N/A'}" style="height:60px" class="rounded-circle p-2" alt=""  >
+                    <p>${author.name ? author.name:"N/A" }</p></div>
                     </div>
                     
                     <button type="button" onclick="catagoryNews('${_id}')"   class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -82,41 +81,25 @@ const catagoryNews = (id) =>{
     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
     .then(res=>res.json())
     .then(data=>newsModal(data.data))
-    .catch(error => {
-        console.log(error);
-    });
+
 } 
 
 const newsModal = (data) =>{
-    const setModal = document.getElementById("set-modal");
-    setModal.innerHTML=""
     data.forEach((datas) => {
-        const {title,thumbnail_url,details}=datas;
-        const createDiv=document.createElement("div")
-        createDiv.innerHTML=`
+        console.log(datas);
+        const modalTitle = document.getElementById("modal-title")
+        modalTitle.innerText=datas.title;
+        const modalDes = document.getElementById("modtal-des")
+        modalDes.innerHTML=datas.details;
+        const publish = document.getElementById("publish")
+        publish.innerText=datas.author.published_date;
+        const rating = document.getElementById("rating")
+        rating.innerText=datas.rating.badge;
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">${title}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                    <div class="modal-body">
-                    <img class="mx-auto d-block" src="${thumbnail_url}" style="width:80%" alt="">
-                    <p>${details}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-            </div>
-
-    
+        const img = document.getElementById("img");
+        img.innerHTML=`
+        <img class="w-100" src="${datas.thumbnail_url}" /> 
         `
-        setModal.appendChild(createDiv); 
     });
 }
 
