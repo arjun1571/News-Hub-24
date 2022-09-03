@@ -29,6 +29,9 @@ const getNews = (id) =>{
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then(res => res.json())
     .then(data=>displayNews(data))
+    .catch(error => {
+        console.log(error);
+    });
 
 }
 const displayNews = (data) =>{
@@ -76,6 +79,9 @@ const catagoryNews = (id) =>{
     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
     .then(res=>res.json())
     .then(data=>newsModal(data.data))
+    .catch(error => {
+        console.log(error);
+    });
 } 
 
 const newsModal = (data) =>{
