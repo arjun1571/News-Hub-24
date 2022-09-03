@@ -31,6 +31,8 @@ const getNews = (id) =>{
 const displayNews = (data) =>{
     const postLen = data.data.length;
     console.log(postLen);
+    const item=document.getElementById("on-item");
+    item.innerText=`${postLen} items found for category Entertainment`
     const newsPost = document.getElementById("news-detail");
     newsPost.innerHTML=""
     data.data.forEach((datas) => {
