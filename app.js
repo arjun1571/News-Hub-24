@@ -1,4 +1,5 @@
 const newsData = () =>{
+    document.getElementById("spiner").style.display="block"
     fetch("https://openapi.programming-hero.com/api/news/categories")
     .then(res => res.json())
     .then(data=>displayCategory(data))
@@ -7,7 +8,6 @@ const newsData = () =>{
 }
 
 const displayCategory = (data) =>{
-    document.getElementById("spiner").style.display="block"
     const categoryList=document.getElementById("category-list");
     data.data.news_category.forEach((datas) => {
         const {category_name,category_id}=datas
@@ -29,6 +29,7 @@ const getNews = (id) =>{
 
 }
 const displayNews = (data) =>{
+    
     // item length count 
     const postLen = data.data.length;
     const item=document.getElementById("on-item");
@@ -38,6 +39,7 @@ const displayNews = (data) =>{
     const newsPost = document.getElementById("news-detail");
     newsPost.innerHTML=""
     data.data.forEach((datas) => {
+        document.getElementById("spiner").style.display="none"
         const createDiv=document.createElement("div")
         createDiv.innerHTML=`
         <div class="card mb-3" >
