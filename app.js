@@ -14,7 +14,7 @@ const displayCategory = (data) =>{
         const createDiv=document.createElement("div")
         createDiv.classList.add("cata-list-style")
         createDiv.innerHTML=`
-        <p onclick="getNews('${category_id}')" >${category_name}</p>
+        <p onclick="getNews('${category_id}')" class="btn btn-light">${category_name}</p>
         `
         categoryList.appendChild(createDiv);
     });
@@ -29,8 +29,8 @@ const getNews = (id) =>{
 }
 const displayNews = (data) =>{
     const newsPost = document.getElementById("news-detail");
+    newsPost.innerHTML=""
     data.forEach((datas) => {
-
         const createDiv=document.createElement("div")
         createDiv.innerHTML=`
         <div class="card mb-3" >
@@ -57,5 +57,12 @@ const displayNews = (data) =>{
     });
    
 }
+
+const catagoryNews = () =>{
+    fetch("https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a")
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+} 
+catagoryNews()
 newsData();
 getNews()
