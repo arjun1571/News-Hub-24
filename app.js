@@ -3,6 +3,9 @@ const newsData = () =>{
     fetch("https://openapi.programming-hero.com/api/news/categories")
     .then(res => res.json())
     .then(data=>displayCategory(data))
+    .catch(error => {
+        console.log(error);
+    });
     // console.log(data);
 
 }
@@ -39,7 +42,8 @@ const displayNews = (data) =>{
     const newsPost = document.getElementById("news-detail");
     newsPost.innerHTML=""
     data.data.forEach((datas) => {
-        document.getElementById("spiner").style.display="none"
+        document.getElementById("spiner").style.display="none";
+        const {title,details,image_url,author,_id,total_view}=datas;
         const createDiv=document.createElement("div")
         createDiv.innerHTML=`
         <div class="card mb-3" >
@@ -49,17 +53,17 @@ const displayNews = (data) =>{
                     </div>
                     <div class="col-md-8">
                     <div class="card-body">
-                    <h5 class="card-text">${datas.title}</h5>
-                    <p>${datas.details.slice(0,200)}</p>
+                    <h5 class="card-text">${title}</h5>
+                    <p>${details.slice(0,200)}</p>
                     <div class="d-flex p-2">
-                    <img src="${datas.image_url}" style="height:30px" class="rounded-circle p-2" alt=""  >
-                    <p>${datas.author.name}</p>
+                    <img src="${image_url}" style="height:30px" class="rounded-circle p-2" alt=""  >
+                    <p>${author.name}</p>
                     </div>
                     
-                    <button type="button" onclick="catagoryNews('${datas._id}')"   class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" onclick="catagoryNews('${_id}')"   class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Detail post
                     </button>
-                    <p class="card-text text-center"><small class="text-muted"> <i class="fa-solid fa-eye"></i> ${datas.total_view}</small></p>
+                    <p class="card-text text-center"><small class="text-muted"> <i class="fa-solid fa-eye"></i> ${total_view ? total_view:"N/A"}</small></p>
                     </div>
                 </div>
             </div>
