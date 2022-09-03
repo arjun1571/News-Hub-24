@@ -66,7 +66,14 @@
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body ans">
-                                var
+                                The differences between var, let, and const variable declaration in JavaScript include:
+                                Variables declared with var and const are scoped to the immediate function body.
+                                Variables declared with the var keyword are hoisted. Hoisting means that the variable
+                                can be accessed in their enclosing scope even before they are declared.
+                                Variables declared with the let keyword are block-scoped, which means the variables will
+                                have scope to the immediate enclosing block.
+                                Let us now discuss, in detail, how these keywords can make a developers code more
+                                efficient and how to use each keyword to declare variables in JavaScript programs.
                             </div>
                         </div>
                     </div>
@@ -80,7 +87,9 @@
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                function
+                                Unlike regular functions, arrow functions do not have their own this . The value of this
+                                inside an arrow function remains the same throughout the lifecycle of the function and
+                                is always bound to the value of this in the closest non-arrow parent function.
                             </div>
                         </div>
                     </div>
@@ -94,7 +103,15 @@
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                map
+                                The main difference between this two methods is that forEach allows you to change
+                                elements of original array and returns undefined and map does not allow you to change
+                                original array and intended for making new array based on original one.
+                                For example if you need to get array of user ids from array of users you should use map
+                                and if you need console.log something from each item of array, you should better use
+                                forEach.
+                                As javascript is more functional language it preferably to use non-mutating functions
+                                from Array.prototype such as filter, map, find ect. It allows me to make code more
+                                readable and maintainable. I can write construction like tat one
                             </div>
                         </div>
                     </div>
@@ -109,7 +126,8 @@
                         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                templeate
+                                Template literals provide an easy way to interpolate variables and expressions into
+                                strings. The method is called string interpolation.
                             </div>
                         </div>
                     </div>

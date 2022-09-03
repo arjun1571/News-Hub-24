@@ -76,6 +76,7 @@ const displayNews = (data) =>{
     });
 }
 const catagoryNews = (id) =>{
+    console.log(id);
     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
     .then(res=>res.json())
     .then(data=>newsModal(data.data))
