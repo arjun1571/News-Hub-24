@@ -25,13 +25,15 @@ const displayCategory = (data) =>{
 const getNews = (id) =>{
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then(res => res.json())
-    .then(data=>displayNews(data.data))
+    .then(data=>displayNews(data))
 
 }
 const displayNews = (data) =>{
+    const postLen = data.data.length;
+    console.log(postLen);
     const newsPost = document.getElementById("news-detail");
     newsPost.innerHTML=""
-    data.forEach((datas) => {
+    data.data.forEach((datas) => {
         const createDiv=document.createElement("div")
         createDiv.innerHTML=`
         <div class="card mb-3" >
@@ -44,13 +46,14 @@ const displayNews = (data) =>{
                     <h5 class="card-text">${datas.title}</h5>
                     <p>${datas.details.slice(0,200)}</p>
                     <div class="d-flex p-2">
-                    <img src="img/Avatar.png" alt="" class="mx-3">
+                    <img src="${datas.image_url}" style="height:30px" class="rounded-circle p-2" alt=""  >
                     <p>${datas.author.name}</p>
                     </div>
-                    <p class="card-text text-center"><small class="text-muted"> ${datas.total_view}view</small></p>
+                    
                     <button type="button" onclick="catagoryNews('${datas._id}')"   class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Detail post
                     </button>
+                    <p class="card-text text-center"><small class="text-muted"> <i class="fa-solid fa-eye"></i> ${datas.total_view}</small></p>
                     </div>
                 </div>
             </div>
@@ -60,14 +63,12 @@ const displayNews = (data) =>{
     });
 }
 const catagoryNews = (id) =>{
-    // console.log(id);
     fetch(`https://openapi.programming-hero.com/api/news/${id}`)
     .then(res=>res.json())
     .then(data=>newsModal(data.data))
 } 
 
 const newsModal = (data) =>{
-    console.log(data);
     const setModal = document.getElementById("set-modal");
     setModal.innerHTML=""
     data.forEach((datas) => {
@@ -82,7 +83,8 @@ const newsModal = (data) =>{
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <img src="${datas.thumbnail_url}" style="width:80%" alt="">
+                        <img class="mx-auto d-block" src="${datas.thumbnail_url}" style="width:80%" alt="">
+                        <p>${datas.details}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
